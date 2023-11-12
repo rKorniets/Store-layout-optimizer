@@ -63,6 +63,7 @@ class StoreLayout {
                     for (let i = 0; i < items.length; i++) {
                         tooltip.append(`<br/>&emsp;${items[i]}`);
                     }
+                    tooltip.append(`<button class="btn btn-sm btn-outline-info" onclick="">Manage items</button>`);
                 }
                 $(currentSellContainer).append(currentSell);
                 $(currentRow).append(currentSellContainer);
@@ -101,7 +102,7 @@ class StoreLayout {
     }
 
     #cycleType(sell, direction = 1) {
-        const sell_type = $(sell).attr("sell-type");
+        const sell_type = $(sell).attr("sell-sell_type");
         const next_type = this.getTypeCycle(sell_type, direction);
         this.config.sells[$(sell).parent().index()][$(sell).index()].type = next_type;
         let n_row = $(sell).attr("n-row");
@@ -145,13 +146,13 @@ class StoreLayout {
         const self = this;
 
         $("#layout-table tbody")
-            .on("click", "td", function () {
-                console.log("left click");
-                self.#cycleType(this);
+            .on("click", "td", function (event) {
+                console.debug("left click");
+                if (!(event.target.tagName === "BUTTON")) self.#cycleType(this);
             })
             .on("contextmenu", "td", function () {
-                console.log("right click");
-                self.#cycleType(this, -1);
+                console.debug("right click");
+                if (!(event.target.tagName === "BUTTON")) self.#cycleType(this, -1);
                 return false;
             });
 
@@ -169,6 +170,10 @@ class StoreLayout {
             selector: '[data-bs-toggle="tooltip"]',
             trigger: 'hover'
         })
+
+        if (this.config.hideSaveLoadButtons){
+            $("#save-load-buttons").hide();
+        }
     }
 
     initializeTooltip(tooltip){

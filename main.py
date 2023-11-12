@@ -6,14 +6,15 @@ layout = Layout(path)
 print(layout.get_layout_name())
 print(layout.get_layout())
 
-res1 = layout.get_sell_to_item_path("test1", (17, 13))[0]
-res2 = layout.get_sell_to_item_path("test2", res1[-2])[0]
-res3 = layout.get_sell_to_item_path("test3", res2[-2])[0]
-res4 = layout.get_sell_to_item_path("test4", res3[-2])[0]
-res5 = layout.get_sell_to_item_path("test5", res4[-2])[0]
+test_check = ["test7", "test1", "test2", "test3", "test5", "test4"]
 
-print(res1, res2, res3, res4, sep="\n")
+# test check
+test_path = layout.get_check_optimal_path(test_check)
+
+print(test_path)
+
 
 # save layout to json file
-with open("./data/layout 18x25_3.json", "w") as file:
+with open("./data/layout 18x25_5.json", "w") as file:
     file.write(layout.get_layout_json())
+layout.display_in_window()

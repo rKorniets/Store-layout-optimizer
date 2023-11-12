@@ -14,11 +14,12 @@ td {
 #layout-table td:hover {
     filter: brightness(1.2);
     --bs-border-color: #000;
-    --bs-border-width: 2px;
+    --bs-border-width: 1px;
 }
 
 .popper-tooltip {
     background: #333;
+    width: 100px;
     color: white;
     font-weight: bold;
     padding: 4px 8px;
