@@ -32,10 +32,35 @@ class Layout:
                     self._doors.append((i, j))
                 elif self._layout.sells[i][j].type.name == "CASHIER":
                     self._cashiers.append((i, j))
+                elif self._layout.sells[i][j].type.name == "RACK":
+                    if len(self._layout.sells[i][j].items) <= self._layout.rackLevels:
+                        self._layout.sells[i][j].items += [""] * (self._layout.rackLevels - len(self._layout.sells[i][j].items))
+                    elif len(self._layout.sells[i][j].items) > self._layout.rackLevels:
+                        raise Exception(f"Too many levels for rack at {i}, {j}")
         if len(self._doors) == 0:
             raise Exception("No doors in layout")
         if len(self._cashiers) == 0:
             raise Exception("No cashiers in layout")
+
+    def __copy__(self):
+        new_layout = Layout(self.path_to_json)
+        for i in range(len(self._layout.sells)):
+            for j in range(len(self._layout.sells[i])):
+                if self._layout.sells[i][j].type.name == "RACK":
+                    new_layout._layout.sells[i][j].items = self._layout.sells[i][j].items.copy()
+                if self._layout.sells[i][j].type.name in ["RACK", "CASHIER"]:
+                    new_layout._layout.sells[i][j].pathCount = 0
+        return new_layout
+
+    def get_empty_rack_layout(self):
+        new_layout = Layout(self.path_to_json)
+        for i in range(len(self._layout.sells)):
+            for j in range(len(self._layout.sells[i])):
+                if self._layout.sells[i][j].type.name == "RACK":
+                    new_layout._layout.sells[i][j].items = [""] * self._layout.rackLevels
+                if self._layout.sells[i][j].type.name in ["RACK", "CASHIER"]:
+                    new_layout._layout.sells[i][j].pathCount = 0
+        return new_layout
 
     def get_layout_name(self):
         return self._layout_name
@@ -46,10 +71,20 @@ class Layout:
     def get_layout_json(self):
         return self._layout.model_dump_json()
 
+    def set_layout(self, layout: LayoutModel):
+        self._layout = layout
+
+    def set_item_to_rack(self, item_name: str, coord: tuple, level: int):
+        if self._layout.sells[coord[0]][coord[1]].type.name != "RACK":
+            raise Exception("Sell type must be RACK")
+        if item_name not in self._layout.items:
+            raise Exception("Item not found in layout")
+        self._layout.sells[coord[0]][coord[1]].items[level] = item_name
+
     """
     Used for finding the shortest path from start_point to item_name
     """
-    def get_sell_to_item_path(self, item_name: str = "", coord_target: tuple = None, start_point: tuple = None, add_path_to_layout: bool = True):
+    def get_sell_to_item_path(self, item_name: str = None, coord_target: tuple = None, start_point: tuple = None, add_path_to_layout: bool = True):
         if start_point is None and coord_target is None:
             raise Exception("start_point or coord_target must have values")
 
@@ -142,7 +177,7 @@ class Layout:
                 # restore path
                 path = []
                 coords = item_coordinates
-                start_point = item_coordinates
+                start_point = coords
                 while coords != (inf, inf):
                     path.append(coords)
                     if add_path_to_layout is True:

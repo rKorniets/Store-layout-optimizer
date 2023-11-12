@@ -6,7 +6,7 @@ layout = Layout(path)
 print(layout.get_layout_name())
 print(layout.get_layout())
 
-test_check = ["test1", "test2", "test3", "test5", "test4", "test7"]
+test_check = ["test7", "test1", "test2", "test3", "test5", "test4"]
 
 # test check
 test_path = layout.get_check_optimal_path(test_check)
