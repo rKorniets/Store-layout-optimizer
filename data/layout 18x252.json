@@ -1,7 +1,7 @@
 {
 	"hideSaveLoadButtons":true,
 	"rackLevels": 4,
-	"items": ["test1", "test2", "test3", "test4", "test5", "test6"],
+	"items": [],
     "sells": [
         [
             {
@@ -169,12 +169,6 @@
                 "type": "wall"
             },
             {
-                "items": ["test6", "zalupa", "syrochock"
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
                 "items": [
                 ],
                 "pathCount": 0,
@@ -194,7 +188,12 @@
             },
             {
                 "items": [
-                    "test1"
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
                 ],
                 "pathCount": 0,
                 "type": "rack"
@@ -264,158 +263,6 @@
                 ],
                 "pathCount": 0,
                 "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            }
-        ],
-        [
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
             },
             {
                 "items": [
@@ -489,18 +336,6 @@
                 "items": [
                 ],
                 "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
                 "type": "floor"
             },
             {
@@ -513,190 +348,7 @@
                 "items": [
                 ],
                 "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
                 "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                    "test2"
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            }
-        ],
-        [
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
             },
             {
                 "items": [
@@ -720,63 +372,7 @@
                 "items": [
                 ],
                 "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            }
-        ],
-        [
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "wall"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
+                "type": "floor"
             },
             {
                 "items": [
@@ -794,61 +390,7 @@
                 "items": [
                 ],
                 "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
                 "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
             },
             {
                 "items": [
@@ -1784,36 +1326,6 @@
                 "items": [
                 ],
                 "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
                 "type": "rack"
             },
             {
@@ -1827,9 +1339,7 @@
                 ],
                 "pathCount": 0,
                 "type": "wall"
-            }
-        ],
-        [
+            },
             {
                 "items": [
                 ],
@@ -1838,144 +1348,21 @@
             },
             {
                 "items": [
-                    "test4",
-					"test5",
-					"test7"
                 ],
                 "pathCount": 0,
-                "type": "rack"
+                "type": "wall"
             },
             {
                 "items": [
                 ],
                 "pathCount": 0,
-                "type": "floor"
+                "type": "wall"
             },
             {
                 "items": [
                 ],
                 "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "floor"
-            },
-            {
-                "items": [
-                ],
-                "pathCount": 0,
-                "type": "rack"
+                "type": "wall"
             },
             {
                 "items": [
@@ -2085,7 +1472,317 @@
                 "items": [
                 ],
                 "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
                 "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            }
+        ],
+        [
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            }
+        ],
+        [
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
             },
             {
                 "items": [
@@ -2116,6 +1813,152 @@
                 ],
                 "pathCount": 0,
                 "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            }
+        ],
+        [
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
             },
             {
                 "items": [
@@ -2299,6 +2142,158 @@
                 "items": [
                 ],
                 "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "floor"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "rack"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            }
+        ],
+        [
+            {
+                "items": [
+                ],
+                "pathCount": 0,
+                "type": "wall"
+            },
+            {
+                "items": [
+                ],
+                "pathCount": 0,
                 "type": "floor"
             },
             {
@@ -2563,7 +2558,6 @@
             },
             {
                 "items": [
-                    "test3"
                 ],
                 "pathCount": 0,
                 "type": "rack"

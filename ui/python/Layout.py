@@ -1,5 +1,7 @@
 import os
 from random import randint
+from copy import deepcopy
+from typing import Tuple
 
 import webview
 from math import inf
@@ -9,8 +11,8 @@ from ui.python.dataClass.LayoutModel import LayoutModel
 
 
 class Layout:
-    _layout = None
-    _layout_name = None
+
+    shape = None
 
     def load_layout(self):
         with open(self.path_to_json) as file:
@@ -26,6 +28,8 @@ class Layout:
         self._layout_name = os.path.basename(path_to_json)
         self._doors = []
         self._cashiers = []
+        self._default_item_count = 20
+
         for i in range(len(self._layout.sells)):
             for j in range(len(self._layout.sells[i])):
                 if self._layout.sells[i][j].type.name == "DOOR":
@@ -34,7 +38,7 @@ class Layout:
                     self._cashiers.append((i, j))
                 elif self._layout.sells[i][j].type.name == "RACK":
                     if len(self._layout.sells[i][j].items) <= self._layout.rackLevels:
-                        self._layout.sells[i][j].items += [""] * (self._layout.rackLevels - len(self._layout.sells[i][j].items))
+                        self._layout.sells[i][j].items += [("", self._default_item_count)] * (self._layout.rackLevels - len(self._layout.sells[i][j].items))
                     elif len(self._layout.sells[i][j].items) > self._layout.rackLevels:
                         raise Exception(f"Too many levels for rack at {i}, {j}")
         if len(self._doors) == 0:
@@ -42,25 +46,57 @@ class Layout:
         if len(self._cashiers) == 0:
             raise Exception("No cashiers in layout")
 
+        self.shape = (len(self._layout.sells), len(self._layout.sells[0]))
+
     def __copy__(self):
         new_layout = Layout(self.path_to_json)
+        new_layout._layout = deepcopy(self._layout)
         for i in range(len(self._layout.sells)):
             for j in range(len(self._layout.sells[i])):
                 if self._layout.sells[i][j].type.name == "RACK":
-                    new_layout._layout.sells[i][j].items = self._layout.sells[i][j].items.copy()
+                    new_layout._layout.sells[i][j].items = [(item_copy[0], self._default_item_count) for item_copy in self._layout.sells[i][j].items.copy()]
                 if self._layout.sells[i][j].type.name in ["RACK", "CASHIER"]:
-                    new_layout._layout.sells[i][j].pathCount = 0
+                    new_layout._layout.sells[i][j].pathCount = self._layout.sells[i][j].pathCount
         return new_layout
+
+    def copy(self):
+        return self.__copy__()
+
+    def __getitem__(self, item):
+        return self._layout.sells[item]
+
+    def __setitem__(self, key, value):
+        self._layout.sells[key] = value
+
+    def save_to_json(self, path_to_json):
+        with open(path_to_json, "w") as file:
+            file.write(self._layout.model_dump_json())
 
     def get_empty_rack_layout(self):
         new_layout = Layout(self.path_to_json)
         for i in range(len(self._layout.sells)):
             for j in range(len(self._layout.sells[i])):
                 if self._layout.sells[i][j].type.name == "RACK":
-                    new_layout._layout.sells[i][j].items = [""] * self._layout.rackLevels
+                    new_layout._layout.sells[i][j].items = [("", self._default_item_count)] * self._layout.rackLevels
                 if self._layout.sells[i][j].type.name in ["RACK", "CASHIER"]:
                     new_layout._layout.sells[i][j].pathCount = 0
         return new_layout
+
+    def reset_items(self):
+        for i in range(len(self._layout.sells)):
+            for j in range(len(self._layout.sells[i])):
+                if self._layout.sells[i][j].type.name == "RACK":
+                    self._layout.sells[i][j].items = [("", self._default_item_count)] * self._layout.rackLevels
+                if self._layout.sells[i][j].type.name in ["RACK", "CASHIER"]:
+                    self._layout.sells[i][j].pathCount = 0
+        return self
+
+    def reset_path_count(self):
+        for i in range(len(self._layout.sells)):
+            for j in range(len(self._layout.sells[i])):
+                if self._layout.sells[i][j].type.name in ["RACK", "CASHIER", "FLOOR", "DOOR"]:
+                    self._layout.sells[i][j].pathCount = 0
+        return self
 
     def get_layout_name(self):
         return self._layout_name
@@ -74,12 +110,22 @@ class Layout:
     def set_layout(self, layout: LayoutModel):
         self._layout = layout
 
+    def set_item_list(self, items: list):
+        self.reset_items()
+        self._layout.items = items
+
+    def get_item_list(self):
+        return self._layout.items
+
     def set_item_to_rack(self, item_name: str, coord: tuple, level: int):
         if self._layout.sells[coord[0]][coord[1]].type.name != "RACK":
             raise Exception("Sell type must be RACK")
         if item_name not in self._layout.items:
             raise Exception("Item not found in layout")
-        self._layout.sells[coord[0]][coord[1]].items[level] = item_name
+        self._layout.sells[coord[0]][coord[1]].items[level] = (item_name, self._default_item_count)
+
+    def get_max_rack_level(self):
+        return self._layout.rackLevels
 
     """
     Used for finding the shortest path from start_point to item_name
@@ -109,7 +155,7 @@ class Layout:
                 if self._layout.sells[s[0]+i][s[1]+j].type.name in ["FLOOR", "CASHIER"] and visited[s[0]+i][s[1]+j] == False:
                     queue.append((s[0]+i, s[1]+j))
                     visited[s[0]+i][s[1]+j] = (s[0], s[1])
-                elif self._layout.sells[s[0]+i][s[1]+j].type.name == "RACK" and item_name is not None and  self._layout.sells[s[0]+i][s[1]+j].items.count(item_name) > 0:
+                elif self._layout.sells[s[0]+i][s[1]+j].type.name == "RACK" and item_name is not None and self._layout.sells[s[0]+i][s[1]+j].items.count(item_name) > 0:
                     item_coordinates = (s[0]+i, s[1]+j)
                     visited[s[0]+i][s[1]+j] = (s[0], s[1])
                     break_flag = True
@@ -131,25 +177,34 @@ class Layout:
 
         return None, None
 
-    def get_check_optimal_path(self, transaction_list: list, start_point: tuple = None, add_path_to_layout: bool = True):
+    def get_check_optimal_path(self, transaction_list: list, start_point: tuple = None, add_path_to_layout: bool = True, use_product_count: bool = False, debug: bool = False):
         if start_point is None:
             start_point = self._doors[randint(0, len(self._doors)-1)]
 
         def remove_found_items(items: list, check_list: list):
-            return [c_item for c_item in check_list if c_item not in items]
+            items_list = [item[0] for item in items if item[1] > 0]
+            return [c_item for c_item in check_list if c_item not in items_list]
 
 
         def check_item_in_rack(items: list, check_list: list):
-            for item in items:
-                if item in check_list:
+            for item, count in items:
+                if item in check_list and (use_product_count is False or count > 0):
                     return True
             return False
+
+        def update_rack_items(rack_coords: Tuple[int, int], check_list: list):
+            for item in range(self.get_max_rack_level()):
+                item_tuple = self._layout.sells[rack_coords[0]][rack_coords[1]].items[item]
+                if item_tuple[0] in check_list and item_tuple[1] > 0:
+                    self._layout.sells[rack_coords[0]][rack_coords[1]].items[item] = \
+                        (self._layout.sells[rack_coords[0]][rack_coords[1]].items[item][0], self._layout.sells[rack_coords[0]][rack_coords[1]].items[item][1] - 1)
 
         fullPath = []
         transaction_list_copy = transaction_list.copy()
 
         while len(transaction_list) > 0:
-            print(transaction_list)
+            if debug:
+                print(f"Path: {fullPath}, List = {transaction_list}")
             visited = [[False] * len(self._layout.sells[0]) for _ in range(len(self._layout.sells))]
 
             queue = [start_point]
@@ -170,6 +225,7 @@ class Layout:
                         item_coordinates = (s[0]+i, s[1]+j)
                         visited[s[0]+i][s[1]+j] = (s[0], s[1])
                         break_flag = True
+                        update_rack_items((s[0] + i, s[1] + j), transaction_list)
                         transaction_list = remove_found_items(self._layout.sells[s[0]+i][s[1]+j].items, transaction_list)
                         break
 
@@ -206,11 +262,12 @@ class Layout:
 
     def calculate_check_score(self, check: list, add_to_layout: bool = True):
         path = self.calculate_path_for_single_check(check, add_to_layout=add_to_layout)
-        return len(path)
+        return path, len(path)
 
-    def display_in_window(self):
+    def display_in_window(self, home_dir = "", debug: bool = False):
+        url = 'file:///' + home_dir + '\\ui\\template\\store.html'
         # pass html template as file to webview
-        self._window = webview.create_window(title=self._layout_name, url='.\\ui\\template\\store.html', width=50+len(self._layout.sells[0])*40, height=150+len(self._layout.sells)*40, js_api=self)
+        self._window = webview.create_window(title=self._layout_name, url=url, width=50+len(self._layout.sells[0])*40, height=150+len(self._layout.sells)*40, js_api=self)
         def send_config_callback(result):
             print(result)
         def send_config_to_js(window):
@@ -225,4 +282,4 @@ class Layout:
                 """, send_config_callback)
             return result
 
-        webview.start(send_config_to_js, self._window, debug=True)
+        webview.start(send_config_to_js, self._window, debug=debug)

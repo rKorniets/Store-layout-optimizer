@@ -15,7 +15,7 @@ class StoreLayout {
             this.config = config;
         }
 
-        this.maxFloorCount = 8;
+        this.maxFloorCount = this.max_floor_count();
 
         this.generateLayout();
         this.initializeControls();
@@ -27,7 +27,21 @@ class StoreLayout {
 
     mapPathCountToHSVColor(path_count){
         path_count = parseInt(path_count);
-        return Math.round(path_count/this.maxFloorCount * 240);
+        return 240 - Math.round(path_count/this.maxFloorCount * 240);
+    }
+
+    max_floor_count(){
+        let max = 0;
+        for (let n_row = 0; n_row < this.config.sells.length; n_row++) {
+            const row = this.config.sells[n_row];
+            for (let n_sell = 0; n_sell < row.length; n_sell++) {
+                let sell = row[n_sell];
+                if (sell.type === "floor" && sell.pathCount > max){
+                    max = sell.pathCount;
+                }
+            }
+        }
+        return max;
     }
 
     mapType(color){
@@ -61,9 +75,14 @@ class StoreLayout {
                     const items = sell.items || [];
                     tooltip.append("<br/>Items: " + items.length);
                     for (let i = 0; i < items.length; i++) {
-                        tooltip.append(`<br/>&emsp;${items[i]}`);
+                        tooltip.append(`<br/>&emsp;${items[i][1]}x ${items[i][0]}`);
                     }
                     tooltip.append(`<button class="btn btn-sm btn-outline-info" onclick="">Manage items</button>`);
+                }
+                if (sell.type === "door" || sell.type === "cashier") {
+                    const path_count = sell.pathCount || 0;
+                    $(currentSellContainer).attr("data-bs-original-title", `${sell.type}\n${path_count}`);
+                    tooltip.append("<br/>Path count: " + path_count);
                 }
                 $(currentSellContainer).append(currentSell);
                 $(currentRow).append(currentSellContainer);
