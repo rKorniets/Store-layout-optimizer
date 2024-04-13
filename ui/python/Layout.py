@@ -117,11 +117,14 @@ class Layout:
     def get_item_list(self):
         return self._layout.items
 
+    def get_rack_count(self):
+        return len([1 for i in range(len(self._layout.sells)) for j in range(len(self._layout.sells[i])) if self._layout.sells[i][j].type.name == "RACK"])
+
     def set_item_to_rack(self, item_name: str, coord: tuple, level: int):
         if self._layout.sells[coord[0]][coord[1]].type.name != "RACK":
             raise Exception("Sell type must be RACK")
         if item_name not in self._layout.items:
-            raise Exception("Item not found in layout")
+            raise Exception(f"Item {item_name} ({type(item_name)}) not found in _layout. Items: {self._layout.items}")
         self._layout.sells[coord[0]][coord[1]].items[level] = (item_name, self._default_item_count)
 
     def get_max_rack_level(self):
@@ -198,6 +201,7 @@ class Layout:
                 if item_tuple[0] in check_list and item_tuple[1] > 0:
                     self._layout.sells[rack_coords[0]][rack_coords[1]].items[item] = \
                         (self._layout.sells[rack_coords[0]][rack_coords[1]].items[item][0], self._layout.sells[rack_coords[0]][rack_coords[1]].items[item][1] - 1)
+                    break
 
         fullPath = []
         transaction_list_copy = transaction_list.copy()
@@ -259,6 +263,23 @@ class Layout:
         path += self.get_sell_to_item_path(coord_target=self._cashiers[randint(0, len(self._cashiers)-1)], start_point=path[-2], add_path_to_layout=add_to_layout)[0]
         return path
 
+    def calculate_path_to_cashier(self, start_point: tuple, add_to_layout: bool = False):
+        # path to the closest cashier
+        main_path = self.get_sell_to_item_path(coord_target=self._cashiers[0], start_point=start_point, add_path_to_layout=add_to_layout)[0]
+        for i in range(1, len(self._cashiers)):
+            path = self.get_sell_to_item_path(coord_target=self._cashiers[i], start_point=start_point, add_path_to_layout=add_to_layout)[0]
+            if len(path) < len(main_path):
+                main_path = path
+        return main_path
+
+    def calculate_path_to_door(self, start_point: tuple, add_to_layout: bool = False):
+        # path to the closest door
+        main_path = self.get_sell_to_item_path(coord_target=self._doors[0], start_point=start_point, add_path_to_layout=add_to_layout)[0]
+        for i in range(1, len(self._doors)):
+            path = self.get_sell_to_item_path(coord_target=self._doors[i], start_point=start_point, add_path_to_layout=add_to_layout)[0]
+            if len(path) < len(main_path):
+                main_path = path
+        return main_path
 
     def calculate_check_score(self, check: list, add_to_layout: bool = True):
         path = self.calculate_path_for_single_check(check, add_to_layout=add_to_layout)
