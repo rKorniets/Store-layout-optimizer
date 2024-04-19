@@ -7,3 +7,4 @@ class Sell(BaseModel):
     type: TileType
     items: List[Optional[Tuple[str, int]]]
     pathCount: int
+    category: Optional[str] = None

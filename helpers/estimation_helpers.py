@@ -1,15 +1,17 @@
 import numpy as np
 
+from ui.python.exceptions.NoItemInLayoutError import NoItemInLayoutError
+
 
 def evaluate_layout(layout, check, start_pos=None, use_item_count=False, reward_type='max'):
     try:
         res = layout.get_check_optimal_path(check, start_point=start_pos, use_product_count=use_item_count)
-    except Exception as e:
+    except NoItemInLayoutError as e:
         #print(e)
         if reward_type == 'max' or reward_type == 'uniformity':
-            return 0, True
+            return 0, True, e.item_name
         else:
-            return 999, True
+            return 999, True, e.item_name
     return len(res), False
 
 
@@ -22,18 +24,19 @@ def compare_racks(rack1, rack2):
 
 
 def calculate_uniformity(layout):
+    # uniformity of racks - compare with neighbors
     rack_score = 0
+    # uniformity of tile - how different items are in the same tile
     tile_score = 0
     tile_count = 0
     for i in range(layout.shape[0]):
         for j in range(layout.shape[1]):
             if layout[i][j].type.name == 'RACK':
                 tile_count += 1
-                t_rack = len(set(layout[i][j].items))
-                if t_rack > 1:
-                    rack_score += 1
+                t_rack = len(set([x[0] for x in layout[i][j].items]))
+                tile_score += t_rack
                 floor_pos = None
-                for pos in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:
+                for pos in [(i, j-1), (i, j+1), (i-1, j), (i+1, j)]:
                     if 0 <= pos[0] < layout.shape[0] and 0 <= pos[1] < layout.shape[1]:
                         if layout[pos[0]][pos[1]].type.name == 'FLOOR':
                             floor_pos = pos
@@ -44,21 +47,22 @@ def calculate_uniformity(layout):
                     pos_right = (i + diff[1], j + diff[0])
                     if layout[pos_left[0]][pos_left[1]].type.name == 'RACK':
                         rack_score += compare_racks(layout[i][j].items, layout[pos_left[0]][pos_left[1]].items)
-                        tile_score += layout[i][j].items != layout[pos_left[0]][pos_left[1]].items
                     if layout[pos_right[0]][pos_right[1]].type.name == 'RACK':
                         rack_score += compare_racks(layout[i][j].items, layout[pos_right[0]][pos_right[1]].items)
-                        tile_score += layout[i][j].items != layout[pos_right[0]][pos_right[1]].items
     return rack_score, tile_score
 
 
 def thread_func(t_layout, t_check_arr, t_start_pos=None, use_item_count=True):
     t_res = (0, 0)
+    res_dict = dict()
+    res_dict['missing_items'] = []
     for check in t_check_arr:
         t = evaluate_layout(t_layout, check[1], t_start_pos, use_item_count=use_item_count)
         inc = 1 if t[1] else 0
         t_res = (t_res[0] + t[0], t_res[1] + inc)
+        if t[1]:
+            res_dict['missing_items'].append(t[2])
     uni_rack, uni_tile = calculate_uniformity(t_layout)
-    res_dict = dict()
     res_dict['path'] = t_res[0]
     res_dict['invalid'] = t_res[1]
     res_dict['rack_uniformity'] = uni_rack
@@ -68,10 +72,10 @@ def thread_func(t_layout, t_check_arr, t_start_pos=None, use_item_count=True):
 def calculate_score(res_dict, layout, check_arr, weights=(750, 125, 125)):
     rack_count = layout.get_rack_count()
     invalid_score = res_dict['invalid'] / len(check_arr)
+    # each row has 2 neighbors, 8 items per rack
+    rack_uniformity = res_dict['rack_uniformity'] / (rack_count * 8)
     # each tile has 2 neighbors
-    rack_uniformity = res_dict['rack_uniformity'] / (rack_count * 3)
-    # each tile has 4 neighbors
-    tile_uniformity = res_dict['tile_uniformity'] / (rack_count * 4)
+    tile_uniformity = res_dict['tile_uniformity'] / (layout.get_max_rack_level() * rack_count)
     return weights[0] * invalid_score + weights[1] * rack_uniformity + weights[2] * tile_uniformity
 
 def get_tile_info(layout, i, j):

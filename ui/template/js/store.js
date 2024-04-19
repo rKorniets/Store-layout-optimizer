@@ -73,6 +73,8 @@ class StoreLayout {
                 }
                 if (sell.type === "rack") {
                     const items = sell.items || [];
+                    $(currentSellContainer).attr("data-bs-original-title", `${sell.type}\n${sell.category}`);
+                    tooltip.append("<br/>Category: " + sell.category);
                     tooltip.append("<br/>Items: " + items.length);
                     for (let i = 0; i < items.length; i++) {
                         tooltip.append(`<br/>&emsp;${items[i][1]}x ${items[i][0]}`);
