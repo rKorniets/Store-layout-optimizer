@@ -100,13 +100,31 @@ class StoreLayout {
             const row = [];
             for (let j = 0; j < cols; j++) {
                 if (i === 0 || i === rows - 1 || j === 0 || j === cols - 1)
-                    row.push({ type: "wall" });
+                    row.push({ type: "wall", items : [], pathCount: 0 });
                 else
-                    row.push({ type: "floor" });
+                    row.push({ type: "floor", items : [], pathCount: 0 });
             }
             sells.push(row);
         }
         this.config = { sells };
+    }
+
+    updateConfig(config) {
+        config.hideSaveLoadButtons = false;
+        config.rackLevels = 4;
+        config.items = [];
+        for (let n_row = 0; n_row < config.sells.length; n_row++) {
+            for (let n_sell = 0; n_sell < config.sells[0].length; n_sell++) {
+                // add empty itmes array and path count
+                if (!config.sells[n_row][n_sell].items) {
+                    config.sells[n_row][n_sell].items = [];
+                }
+                if (!config.sells[n_row][n_sell].pathCount) {
+                    config.sells[n_row][n_sell].pathCount = 0;
+                }
+            }
+        }
+        return config
     }
 
     getTypeCycle(sell_type, direction = 1) {
@@ -123,7 +141,7 @@ class StoreLayout {
     }
 
     #cycleType(sell, direction = 1) {
-        const sell_type = $(sell).attr("sell-sell_type");
+        const sell_type = $(sell).attr("sell-type");
         const next_type = this.getTypeCycle(sell_type, direction);
         this.config.sells[$(sell).parent().index()][$(sell).index()].type = next_type;
         let n_row = $(sell).attr("n-row");
@@ -155,7 +173,7 @@ class StoreLayout {
             reader.readAsText(file,'UTF-8');
             reader.onload = readerEvent => {
                 const content = readerEvent.target.result;
-                self.config = JSON.parse(content);
+                self.config = this.updateConfig(JSON.parse(content));
                 $("#layout-body").empty();
                 self.generateLayout();
             }

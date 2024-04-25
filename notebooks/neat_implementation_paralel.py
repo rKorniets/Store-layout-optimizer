@@ -17,8 +17,8 @@ import pandas as pd
 MAX_WORKERS = 10
 SLICE_SIZE = 400
 EPOCHS = 100
-SCORE_COEFFICIENTS = (500, 350, 150)
-layout = Layout('./../data/layouts/genetic/step1-max/layout_0.json').reset_item_count().reset_path_count()
+SCORE_COEFFICIENTS = (900, 50, 50)
+layout = Layout('./../data/layouts/genetic/step1-max/layout_4_racks.json').reset_item_count().reset_path_count()
 item_list = None
 check_list = None
 check_ids = None
@@ -142,7 +142,8 @@ def eval_genome(genome, config):
     res_dict, processed_layout = thread_func(_layout, check_list[:SLICE_SIZE], use_item_count=True)
     checks = check_list[:SLICE_SIZE]
     random.shuffle(checks)
-    estimation = 1000 - calculate_score(res_dict, processed_layout, checks, SCORE_COEFFICIENTS)
+    # estimation = 1000 - calculate_score(res_dict, processed_layout, checks, SCORE_COEFFICIENTS)
+    estimation = res_dict['path']
     return estimation
 
 def run_genome(genome, config):
@@ -180,7 +181,9 @@ def run(config_file):
         winner = p.run(pe.evaluate, 5)
         l = run_genome(winner, config)
         layout = l.copy()
-        l.reset_path_count().reset_item_count()
+        l.reset_path_count()
+        if i % 10 == 0:
+            l.reset_item_count()
         print("Generation: ", i, "Fitness: ", winner.fitness, "Layout saved")
     global best
     best = winner
