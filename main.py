@@ -24,6 +24,7 @@ layout.set_item_to_rack("test5", (13, 8), 1)
 
 # test check
 test_path = layout.get_check_optimal_path(test_check)
+#test_path = layout.calculate_path_for_single_check(test_check)
 
 print(test_path)
 
