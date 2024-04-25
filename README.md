@@ -1,2 +1,2 @@
-# Store-layout-optimizator
+# Store-layout-optimizer
  
