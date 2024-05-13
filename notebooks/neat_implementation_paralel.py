@@ -18,7 +18,7 @@ MAX_WORKERS = 10
 SLICE_SIZE = 400
 EPOCHS = 100
 SCORE_COEFFICIENTS = (900, 50, 50)
-layout = Layout('./../data/layouts/genetic/step1-max/layout_4_racks.json').reset_item_count().reset_path_count()
+layout = Layout('./../data/layout 12x15_1.json').reset_item_count().reset_path_count()
 item_list = None
 check_list = None
 check_ids = None
@@ -185,6 +185,7 @@ def run(config_file):
         if i % 10 == 0:
             l.reset_item_count()
         print("Generation: ", i, "Fitness: ", winner.fitness, "Layout saved")
+        l.save_to_json(f'./../data/layouts/neat/layout_{i}.json')
     global best
     best = winner
 
@@ -240,6 +241,7 @@ if __name__ == '__main__':
                 items = layout[i][j].items
                 for level in range(layout.get_max_rack_level()):
                     item = items[level]
+                    continue
                     new_item = name_id_df[name_id_df['product_name'] == item[0]]['product_id_norm'].values[0]
                     layout.set_item_to_rack(str(new_item), (i, j), level=level)
 
