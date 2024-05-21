@@ -7,3 +7,6 @@ Just open [store-editor.html](https://github.com/rKorniets/Store-layout-optimiza
 
 ## View experiments and results
 Check corresponding notebooks, some of them are duplicated to show the results for bigger and smaller stores. 
+
+## Dataset
+ In my experiments I used public dataset from kaggle https://www.kaggle.com/datasets/hunter0007/ecommerce-dataset-for-predictive-marketing-2023
